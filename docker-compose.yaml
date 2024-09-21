@@ -1,0 +1,14 @@
+services:
+  sat:
+    build: .
+    image: satisfactory
+    tty: false
+    stdin_open: false
+    environment:
+      STEAMCMD_APP_ID: "1690800"
+      STEAMCMD_SKIP: "true"
+      UID: "${UID}"
+      GID: "${GID}"
+    network_mode: "host"
+    volumes:
+      - "./saves:/saves"
