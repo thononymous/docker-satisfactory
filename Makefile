@@ -1,8 +1,8 @@
 .PHONY: build start stop defconfig .env
 
 build:
-	docker buildx build --build-arg=username=sat -f Dockerfile.steamcmd -t steamcmd:ubuntu2204 .
-	docker buildx build --build-arg=username=sat -f Dockerfile -t satisfactory .
+	DOCKER_BUILDKIT=1 docker buildx build --build-arg=username=sat -f Dockerfile.steamcmd -t steamcmd:ubuntu2204 .
+	DOCKER_BUILDKIT=1 docker buildx build --build-arg=username=sat -f Dockerfile -t satisfactory .
 
 saves:
 	mkdir saves

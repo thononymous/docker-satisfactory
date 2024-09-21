@@ -29,14 +29,6 @@ echo $#
 if [[ $# -ge 1 ]]; then
   while [[ $# -ge 1 ]]; do
     case "$1" in
-      # defconfig)
-      #   shift
-      #   fixperms
-      #   # hacky shit
-      #   sue $UID:$GID timeout 5s /home/*/Steam/steamapps/common/PalServer/PalServer.sh Pal || true
-      #   set -- cp -v /home/sat/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini /saves/
-      #   break
-      #   ;;
       -h)
         usage
         exit 1

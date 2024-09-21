@@ -4,8 +4,8 @@
 FROM ubuntu:22.04
 
 # Set environment variables
-ENV USER root
-ENV HOME /root
+ENV USER=root
+ENV HOME=/root
 
 # Set working directory
 WORKDIR $HOME
@@ -26,8 +26,8 @@ RUN dpkg --add-architecture i386 && \
 
 # Add unicode support
 RUN locale-gen en_US.UTF-8
-ENV LANG 'en_US.UTF-8'
-ENV LANGUAGE 'en_US:en'
+ENV LANG='en_US.UTF-8'
+ENV LANGUAGE='en_US:en'
 
 # Create symlink for executable
 RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
@@ -42,8 +42,8 @@ RUN groupadd -g 9999 $username && \
     useradd -m -d /home/$username -s /bin/bash -g $username -u 9999 $username
 
 USER $username:$username
-ENV HOME /home/$username
-ENV USER $username
+ENV HOME=/home/$username
+ENV USER=$username
 
 # Update SteamCMD and verify latest version
 RUN steamcmd +quit

@@ -27,18 +27,21 @@ FROM steamcmd:ubuntu2204
 RUN steamcmd +login anonymous +app_update 1690800 validate +quit
 
 # install, i dunno sdk maybe?
-RUN steamcmd +login anonymous +app_update 1007 +quit 
-
-# RUN cd $HOME/Steam/steamapps/common/PalServer/Pal/Binaries/Linux/ && \
-#     cp $HOME/Steam/steamapps/common/Steamworks\ SDK\ Redist/linux64/steamclient.so ./ && \
-#     ln -s steamclient.so steamservice.so
+# RUN steamcmd +login anonymous +app_update 1007 +quit 
 
 USER root:root
 ENV HOME=/root
 ENV USER=root
 
 # link save dir to top level for easy volume mounting
-# RUN ln -s /saves /home/pal/Steam/steamapps/common/PalServer/Pal/Saved
+RUN <<EOF 
+set -xeo pipefail
+mkdir -p /home/sat/Steam/steamapps/common/SatisfactoryDedicatedServer/FactoryGame/
+ln -s /saves /home/sat/Steam/steamapps/common/SatisfactoryDedicatedServer/FactoryGame/Saved
+mkdir -p /home/sat/.config/Epic/FactoryGame/
+ln -s /saves /home/sat/.config/Epic/FactoryGame/Saved
+chown -R sat:sat /home/sat/
+EOF
 
 # install some deps
 ENV DEBIAN_FRONTEND=noninteractive
